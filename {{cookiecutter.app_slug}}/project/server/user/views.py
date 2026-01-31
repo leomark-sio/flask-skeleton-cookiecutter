@@ -16,6 +16,11 @@ user_blueprint = Blueprint("user", __name__)
 def register():
     form = RegisterForm(request.form)
     if form.validate_on_submit():
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash("Email already registered. Please login.", "danger")
+            return render_template("user/register.html", form=form)
+
         user = User(email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -34,7 +39,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(
-            user.password, request.form["password"]
+            user.password, form.password.data
         ):
             login_user(user)
             flash("You are logged in. Welcome!", "success")

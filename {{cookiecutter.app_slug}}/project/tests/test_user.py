@@ -100,9 +100,23 @@ class TestUserBlueprint(BaseTestCase):
         self.assertIn(b"Invalid email and/or password.", response.data)
 
     def test_register_route(self):
-        # Ensure about route behaves correctly.
+        # Ensure register route behaves correctly.
         response = self.client.get("/register", follow_redirects=True)
         self.assertIn(b"<h1>Register</h1>\n", response.data)
+
+    def test_duplicate_email_registration(self):
+        # Ensure duplicate email registration is rejected.
+        with self.client:
+            response = self.client.post(
+                "/register",
+                data=dict(
+                    email="ad@min.com",
+                    password="admin_user",
+                    confirm="admin_user",
+                ),
+                follow_redirects=True,
+            )
+            self.assertIn(b"Email already registered", response.data)
 
     def test_user_registration(self):
         # Ensure registration behaves correctlys.

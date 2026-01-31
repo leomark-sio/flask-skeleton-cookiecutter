@@ -1,16 +1,14 @@
 # manage.py
 
-
+import subprocess
+import sys
 import unittest
 
 import coverage
-
 from flask.cli import FlaskGroup
 
 from project.server import create_app, db
 from project.server.models import User
-import subprocess
-import sys
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
