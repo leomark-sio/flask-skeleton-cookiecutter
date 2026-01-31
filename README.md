@@ -20,10 +20,3 @@ Once generated, review the setup guides, within the newly created project direct
 
 1. [setup-with-docker.md](%7B%7Bcookiecutter.app_slug%7D%7D/setup-with-docker.md)
 2. [setup-without-docker.md](%7B%7Bcookiecutter.app_slug%7D%7D/setup-without-docker.md)
-
-## Author
-
-**Leo** ([@leomark-sio](https://github.com/leomark-sio))
-
-- GitHub: [https://github.com/leomark-sio](https://github.com/leomark-sio)
-- Email: [leomarksio386@gmail.com](mailto:leomarksio386@gmail.com)
